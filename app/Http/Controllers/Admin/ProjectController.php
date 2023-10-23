@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+// bisogna aggiornare la netspace con admin alla fine
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+
+// deve andare a perscare il controller dalla cartella controllers
+use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
@@ -14,7 +18,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view("admin.projects.index", compact("projects"));
     }
 
     /**

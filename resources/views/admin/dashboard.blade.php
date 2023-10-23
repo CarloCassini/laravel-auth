@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- bottone per viwe degli elementi--}}
+<div class="container my-5 text-center">
+    <a class="navbar-brand btn btn-primary" href="{{ route('admin.projects.index') }}">lista dei progetti</a>
+</div>
+
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Dashboard') }}
