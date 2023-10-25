@@ -5,8 +5,20 @@
 @endsection
  
 @section('content')
-    <h1 class="container my-1">edit</h1>
     <div class="container mt-5">
+
+      @if ($errors->any())
+        <div class="alert alert-warning">
+          <h5>correggi i seguenti errori</h5>
+          <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error}}</li>
+          @endforeach
+          </ul>
+        </div>
+      @endif
+
+
       <a class="" href="{{route('admin.projects.index')}}">
         <div class="my-3 btn btn-success">
           back to index
@@ -23,24 +35,44 @@
       @csrf
       @method('PUT')
       
+      @dump(old('name'))
       <label for="name" class="form-label" >Name</label>
-      <input type="text" class="form-control" id="name" name="name" value="{{$project->name}}" />
+      <input type="text" class="form-control
+      @error('name')
+       is-invalid
+      @enderror"
+      id="name" name="name" value="{{old('name')??$project->name}}" />
+      @error('name')
+        <div class="invalid-feedback">{{ $message}}</div>
+      @enderror
 
       <label for="git_url" class="form-label">Url repository</label>
       <textarea
-      class="form-control"
+      class="form-control
+      @error('git_url')
+        is-invalid
+      @enderror"
       id="git_url"
       name="git_url"
       rows="1"
-      >{{$project->git_url}}</textarea>
+      >{{old('git_url')??$project->git_url}}</textarea>
+      @error('git_url')
+       <div class="invalid-feedback">{{ $message}}</div>
+      @enderror
       
       <label for="description" class="form-label">Description</label>
       <textarea
-      class="form-control"
+      class="form-control
+      @error('description')
+        is-invalid
+      @enderror"
           id="description"
           name="description"
           rows="5"
-          >{{$project->description}}</textarea>
+          >{{old('description')??$project->description}}</textarea>
+          @error('description')
+            <div class="invalid-feedback">{{ $message}}</div>
+          @enderror
           
           <button type="submit" class="btn btn-primary my-3">modifica</button>
         </form>

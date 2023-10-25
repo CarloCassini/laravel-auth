@@ -3,6 +3,7 @@ php artisan make:request StoreProjectRequest
 mettere true sul return dell' authorize
 
 scrivere le regole sul metodo Rules()
+!! mi raccomando di inserire tutti i campi del fillable (hai aggiunto il fillable al model?)
 
 vanno gestite le regole come un array
 esempio:
@@ -22,7 +23,9 @@ inserire tra le regole anche i campi che regole non ne hanno. mettere array vuot
 
 <!-- xxx -->
 
-'ciccio' => [''],
+```php
+'ciccio' => [],
+```
 
 <!-- xxx -->
 
@@ -102,3 +105,8 @@ per fare apparire gli errori sotto i campi
 <div class="invalid-feedback">{{ $message}}</div>
 @enderror
 ```
+
+---
+
+per prendere il valore vecchio ci vuole ,
+{{old}} nella value
