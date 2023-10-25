@@ -9,3 +9,11 @@
     border: 1px dashed red;
     color: red;
 }
+
+a {
+    color: currentColor;
+    text-decoration: none;
+    &:hover {
+        color: blueviolet;
+    }
+}
