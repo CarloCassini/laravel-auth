@@ -12,18 +12,35 @@
       back to index
     </div>
   </a>
-    <table class="table">
-        
-        <tbody>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Slug</th>
-          <th scope="col">Url</th>
-          <th scope="col">Description</th>
-          <th scope="col" colspan="3">Action</th>
-        </tbody>
 
-    </table>
-</div>
+  <section class="debug">
 
-@endsection
+    <form action="{{ route('admin.projects.store') }}" method="POST">
+      @csrf
+      
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" />
+
+      <label for="Url" class="form-label">Url repository</label>
+      <textarea
+      class="form-control"
+      id="Url"
+      name="Url"
+      rows="1"
+      ></textarea>
+      
+      <label for="Description" class="form-label">Description</label>
+      <textarea
+      class="form-control"
+          id="description"
+          name="description"
+          rows="5"
+          ></textarea>
+          
+          <button type="submit" class="btn btn-primary">Salva</button>
+        </form>
+      </div>
+    </section>
+      
+      @endsection
+      
