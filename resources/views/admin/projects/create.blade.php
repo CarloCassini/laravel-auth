@@ -7,6 +7,7 @@
 @section('content')
 <div class="container mt-5">
 
+  {{-- mostra tutti gli errori riscontrati nella validazione --}}
   @if ($errors->any())
   <div class="alert alert-warning">
     <h5>correggi i seguenti errori</h5>
@@ -32,7 +33,7 @@
       <label for="name" class="form-label">Name</label>
       <input type="text" class="form-control 
       @error('name')
-          is-invalid
+        is-invalid
       @enderror" 
       id="name" name="name" 
       value="{{old('name')}}"/>
@@ -44,19 +45,35 @@
 
       <label for="git_url" class="form-label">Url repository</label>
       <textarea
-      class="form-control"
+      class="form-control
+      @error('git_url')
+       is-invalid
+      @enderror "
       id="git_url"
       name="git_url"
       rows="1"
-      ></textarea>
+      >{{old('git_url')}}</textarea>
+      @error('git_url')
+        <div class="invalid-feedback">
+         {{ $message}}
+        </div>          
+      @enderror
       
       <label for="description" class="form-label">Description</label>
       <textarea
-      class="form-control"
-          id="description"
-          name="description"
-          rows="5"
-          ></textarea>
+      class="form-control 
+      @error('description')
+        is-invalid
+      @enderror"
+      id="description"
+      name="description"
+      rows="5"
+      >{{old('description')}}</textarea>
+      @error('git_url')
+        <div class="invalid-feedback">
+          {{ $message}}
+        </div>          
+      @enderror
           
           <button type="submit" class="btn btn-primary my-3">Salva</button>
         </form>

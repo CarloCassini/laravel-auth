@@ -25,7 +25,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:50'],
-            'git_url' => ['url'],
+            'git_url' => ['string'],
             'description' => ['string']
         ];
     }
@@ -36,7 +36,8 @@ class StoreProjectRequest extends FormRequest
             'name.string' => 'il nome deve essere un testo',
             'name.max' => 'il nome deve essere max di 50 caratteri',
 
-            'git_url.url' => 'inserisci un URL',
+            'git_url.string' => ' url deve essere di tipo testo',
+
 
             'description.string' => 'la descrizione deve essere di tipo testo',
         ];
