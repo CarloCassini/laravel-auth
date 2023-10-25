@@ -41,10 +41,14 @@
                 <a href="{{route('admin.projects.edit', $project)}}">
                   <i class="fa-solid fa-file-pen"></i>
                 </a>
-                <i class="fa-solid fa-trash"></i>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ciccio{{$project->id}}">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+
 
               </div>
-              {{-- collegamento alla vista show --}}
               
             </td>
           </tr>
@@ -53,4 +57,32 @@
     </table>
 </div>
 
+@endsection
+
+@section('modals')
+<section class="container my-5">
+
+
+
+  <!-- Modal -->
+@foreach ($projects as $project)
+  <div class="modal fade" id="ciccio{{$project->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{$project->name}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+</section>    
 @endsection

@@ -5,20 +5,20 @@
 @endsection
  
 @section('content')
-<h1 class="container my-1">edit</h1>
-<div class="container mt-5">
-  <a class="" href="{{route('admin.projects.index')}}">
-    <div class="my-3 btn btn-success">
-      back to index
-    </div>
-  </a>
-  {{-- <a class="" href="{{route('admin.projects.delete')}}"> --}}
-    <div class="my-3 btn btn-danger">
-      delete item
-    </div>
-  {{-- </a> --}}
+    <h1 class="container my-1">edit</h1>
+    <div class="container mt-5">
+      <a class="" href="{{route('admin.projects.index')}}">
+        <div class="my-3 btn btn-success">
+          back to index
+        </div>
+      </a>
+      {{-- <a class="" href="{{route('admin.projects.delete')}}"> --}}
+        <div class="my-3 btn btn-danger">
+          delete item
+        </div>
+      {{-- </a> --}}
 
-  <section >
+    <section >
     <form action="{{ route('admin.projects.update',$project) }}" method="POST">
       @csrf
       @method('PUT')
@@ -46,6 +46,9 @@
         </form>
       </div>
     </section>
-      
-      @endsection
-      
+ @endsection
+
+ @section('modals')
+ {{-- todo --}}
+     
+ @endsection
