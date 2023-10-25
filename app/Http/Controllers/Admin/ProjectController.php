@@ -74,11 +74,11 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function edit(Project $project)
     {
-        //
+        return view("admin.projects.edit", compact("project"));
     }
 
     /**
@@ -90,6 +90,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $data = $request->all();
+        // gestisco lo slug
+        // ma gestito prima di update, evidentemente prende esattamente le righe toccate
+        $project->slug = Str::slug($project->name);
+
+        $project->update($data);
+
+
+        return redirect()->route("admin.projects.show", $project);
+        // dd($data);
         //
     }
 

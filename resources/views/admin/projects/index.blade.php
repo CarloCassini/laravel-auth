@@ -20,7 +20,7 @@
             <th scope="col">Slug</th>
             <th scope="col">Url</th>
             <th scope="col">Description</th>
-            <th scope="col" colspan="3">Action</th>
+            <th scope="col"  class="text-center">Action</th>
           </tr>
         </thead>
         
@@ -34,18 +34,19 @@
             <td>{{$project->description}}</td>
             {{-- da qui in poi i bottoni per le interazioni --}}
             <td>
-              {{-- collegamento alla vista show --}}
-              <a href="{{route('admin.projects.show', $project)}}">
-                <i class="fa-solid fa-eye"></i>
-              </a>
-            </td>
-            <td>
-              {{-- collegamento alla vista edit --}}
-              {{-- <a href="{{route('admin.projects.edit')}}"> --}}
-                <i class="fa-solid fa-file-pen"></i></td>
-              {{-- </a> --}}
-            <td><i class="fa-solid fa-trash"></i></td>
+              <div class="d-flex gap-2 my-1  justify-content-center align-items-center">
+                <a href="{{route('admin.projects.show', $project)}}">
+                  <i class="fa-solid fa-eye"></i>
+                </a>
+                <a href="{{route('admin.projects.edit', $project)}}">
+                  <i class="fa-solid fa-file-pen"></i>
+                </a>
+                <i class="fa-solid fa-trash"></i>
 
+              </div>
+              {{-- collegamento alla vista show --}}
+              
+            </td>
           </tr>
         </tbody>
         @endforeach

@@ -5,20 +5,26 @@
 @endsection
  
 @section('content')
+<h1 class="container my-1">edit</h1>
 <div class="container mt-5">
   <a class="" href="{{route('admin.projects.index')}}">
     <div class="my-3 btn btn-success">
       back to index
     </div>
   </a>
+  {{-- <a class="" href="{{route('admin.projects.delete')}}"> --}}
+    <div class="my-3 btn btn-danger">
+      delete item
+    </div>
+  {{-- </a> --}}
 
-  <section class="debug">
-
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+  <section >
+    <form action="{{ route('admin.projects.update',$project) }}" method="POST">
       @csrf
+      @method('PUT')
       
-      <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name" name="name" />
+      <label for="name" class="form-label" >Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{$project->name}}" />
 
       <label for="git_url" class="form-label">Url repository</label>
       <textarea
@@ -26,7 +32,7 @@
       id="git_url"
       name="git_url"
       rows="1"
-      ></textarea>
+      >{{$project->git_url}}</textarea>
       
       <label for="description" class="form-label">Description</label>
       <textarea
@@ -34,9 +40,9 @@
           id="description"
           name="description"
           rows="5"
-          ></textarea>
+          >{{$project->description}}</textarea>
           
-          <button type="submit" class="btn btn-primary my-3">Salva</button>
+          <button type="submit" class="btn btn-primary my-3">modifica</button>
         </form>
       </div>
     </section>
