@@ -13,7 +13,7 @@
         </div>
       </a>
       {{-- <a class="" href="{{route('admin.projects.delete')}}"> --}}
-        <div class="my-3 btn btn-danger">
+        <div class="my-3 btn btn-danger" data-bs-toggle="modal" data-bs-target="#ciccio{{$project->id}}">
           delete item
         </div>
       {{-- </a> --}}
@@ -49,6 +49,27 @@
  @endsection
 
  @section('modals')
- {{-- todo --}}
-     
- @endsection
+ <!-- Modal -->
+  <div class="modal fade" id="ciccio{{$project->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Cancellare {{$project->name}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          confermare la cancellazione di <span class="text-danger fw-bolder">{{$project->name}}</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+          <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger">Confirm</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>    
+@endsection
