@@ -17,3 +17,11 @@ a {
         color: blueviolet;
     }
 }
+.delete-btn {
+    color: currentColor;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        color: blueviolet;
+    }
+}

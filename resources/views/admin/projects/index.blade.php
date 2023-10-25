@@ -43,9 +43,9 @@
                 </a>
 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ciccio{{$project->id}}">
+                <span class="delete-btn" data-bs-toggle="modal" data-bs-target="#ciccio{{$project->id}}">
                   <i class="fa-solid fa-trash"></i>
-                </button>
+                </span>
 
 
               </div>
@@ -70,15 +70,15 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Cancellare {{$project->name}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          {{$project->name}}
+          confermare la cancellazione di <span class="text-danger fw-bolder">{{$project->name}}</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+          <button type="button" class="btn btn-danger">Conferm</button>
         </div>
       </div>
     </div>
