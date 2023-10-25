@@ -14,7 +14,7 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -47,10 +47,14 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function show(Project $project)
     {
+        // dd($projects);
+        // $projects = Project::where('id', '==', $project[id])->get();
+        return view("admin.projects.show", compact("project"));
+
         //
     }
 
