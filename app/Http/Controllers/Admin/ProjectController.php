@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 // deve andare a perscare il controller dalla cartella controllers
 use App\Http\Controllers\Controller;
 
+// per usare la classe STR
 use Illuminate\Support\Str;
+// per usare la Validazione
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -115,4 +118,14 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index');
         //
     }
+}
+
+// creo il metodo per la Validazione
+private function validator($data){
+    
+    Validator::make(
+        $data,
+         [..regole di validazione..],
+         [..messaggi di errore..]
+    )
 }
