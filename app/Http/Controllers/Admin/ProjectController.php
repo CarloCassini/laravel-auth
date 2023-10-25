@@ -3,6 +3,7 @@
 // bisogna aggiornare la netspace con admin alla fine
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -44,15 +45,10 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * *@return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-
-        // senza validazione
-        $data = $request->all();
-
-
-        // con validazione
-        // $data = $this->Validator($request->all());
+        // se la validazione non va a buon fine tutto si blocca qui e rimanda alla pagina di create
+        $data = $request->validated();
 
         $project = new Project();
         $project->fill($data);
@@ -60,7 +56,6 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->route('admin.projects.show', $project);
-        // return view('admin.projects.test');
         //
     }
 
@@ -72,8 +67,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        // dd($projects);
-        // $projects = Project::where('id', '==', $project[id])->get();
+
         return view("admin.projects.show", compact("project"));
 
         //
@@ -125,28 +119,4 @@ class ProjectController extends Controller
         //
     }
 
-    // creo il metodo per la Validazione
-    private function validator($data)
-    {
-
-        $validator = Validator::make(
-            $data,
-            [
-                'name' => 'required|string|max:50',
-                'git_url' => 'url',
-                'description' => 'string'
-            ],
-            [
-                'name.required' => 'il nome è obbligatiorio',
-                'name.string' => 'il nome deve essere un testo',
-                'name.max' => 'il nome deve essere max di 50 car',
-
-                'git_url.url' => 'inserisci un URL',
-
-                'description.string' => 'la descrizione deve essere di tipo testo',
-            ]
-        )->validate();
-
-        return $validator;
-    }
 }
