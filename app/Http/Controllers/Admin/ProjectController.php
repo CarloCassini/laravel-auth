@@ -47,7 +47,13 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
+        // senza validazione
         $data = $request->all();
+
+
+        // con validazione
+        // $data = $this->Validator($request->all());
+
         $project = new Project();
         $project->fill($data);
         $project->slug = Str::slug($project->name);
@@ -118,14 +124,29 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index');
         //
     }
-}
 
-// creo il metodo per la Validazione
-private function validator($data){
-    
-    Validator::make(
-        $data,
-         [..regole di validazione..],
-         [..messaggi di errore..]
-    )
+    // creo il metodo per la Validazione
+    private function validator($data)
+    {
+
+        $validator = Validator::make(
+            $data,
+            [
+                'name' => 'required|string|max:50',
+                'git_url' => 'url',
+                'description' => 'string'
+            ],
+            [
+                'name.required' => 'il nome è obbligatiorio',
+                'name.string' => 'il nome deve essere un testo',
+                'name.max' => 'il nome deve essere max di 50 car',
+
+                'git_url.url' => 'inserisci un URL',
+
+                'description.string' => 'la descrizione deve essere di tipo testo',
+            ]
+        )->validate();
+
+        return $validator;
+    }
 }
